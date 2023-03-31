@@ -1,0 +1,15 @@
+print("Bienvenido a la aplicación de recomendación de universidades y carreras universitarias")
+
+actividades = input("1. ¿Qué tipo de actividades te gustaría realizar en tu trabajo?")
+habilidades = input("2. ¿Qué habilidades crees que tienes?")
+materias = input("3. ¿Qué materias te gustan más?")
+trabajo = input("4. ¿Cómo te gustaría trabajar?")
+ambiente = input("5. ¿Qué ambiente de trabajo prefieres?")
+carrera = input("6. ¿Qué carrera te llama más la atención?")
+habilidades_manuales = input("7. ¿Qué habilidades manuales tienes?")
+ayuda_sociedad = input("8. ¿Cómo te gustaría ayudar a la sociedad?")
+objetivos = input("9. ¿Qué te gustaría lograr en tu carrera profesional?")
+equilibrio = input("10. ¿Qué tan importante es para ti el equilibrio entre el trabajo y la vida personal?")
+
+
+print("Gracias por utilizar nuestra aplicación. A continuación te recomendaremos algunas carreras y universidades que podrían ser de tu interés:")
