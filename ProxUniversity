@@ -1,15 +1,106 @@
-print("Bienvenido a la aplicación de recomendación de universidades y carreras universitarias")
-
-actividades = input("1. ¿Qué tipo de actividades te gustaría realizar en tu trabajo?")
-habilidades = input("2. ¿Qué habilidades crees que tienes?")
-materias = input("3. ¿Qué materias te gustan más?")
-trabajo = input("4. ¿Cómo te gustaría trabajar?")
-ambiente = input("5. ¿Qué ambiente de trabajo prefieres?")
-carrera = input("6. ¿Qué carrera te llama más la atención?")
-habilidades_manuales = input("7. ¿Qué habilidades manuales tienes?")
-ayuda_sociedad = input("8. ¿Cómo te gustaría ayudar a la sociedad?")
-objetivos = input("9. ¿Qué te gustaría lograr en tu carrera profesional?")
-equilibrio = input("10. ¿Qué tan importante es para ti el equilibrio entre el trabajo y la vida personal?")
+import datetime
 
 
-print("Gracias por utilizar nuestra aplicación. A continuación te recomendaremos algunas carreras y universidades que podrían ser de tu interés:")
+def calcular_puntaje(respuestas):
+    puntajes = {
+        'A' : [2,3,3,3,3,2,3,3,3,2,4],
+        'B' : [3,2,2,2,3,2,2,2,3,3],
+        'C' : [4,4,4,1,1,4,1,4,4,2]
+    }
+
+    puntaje_total = sum(puntajes[resp] for resp in respuestas)
+    return puntaje_total
+
+def guardar_datos(nombre, edad, respuestas, puntaje):
+
+    fecha = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    archivo = f"{nombre}_{fecha}.txt"
+
+    with open(archivo, "w") as f:
+        f.write(f"Nombre: {nombre}\n")
+        f.write(f"Edad: {edad}\n")
+        f.write("Respuestas: \n")
+        for i, r in enumerate(respuestas):
+            f.write(f"Pregunta {i+1}: {r}\n")
+        f.write(f"Puntaje final: {puntaje}\n")
+    print(f"Los datos han sido guardados en el archivo '{archivo}'")
+
+def main():
+    print("Bienvenido a la aplicación de orientación vocacional")
+    print("Por favor, responda las siguientes preguntas")
+
+    preguntas = [
+         "1. ¿Qué tipo de actividades te gustaría realizar en tu trabajo?",
+        "\tA) Trabajar con números y datos",
+        "\tB) Trabajar con personas y ayudarlas",
+        "\tC) Trabajar con tecnología y dispositivos.",
+        "2. ¿Qué habilidades crees que tienes?",
+        "\tA) Habilidad para analizar y resolver problemas",
+        "\tB) Habilidad para comunicarte y persuadir a otros",
+        "\tC) Habilidad para comunicarte y persuadir a otros.",
+        "3. ¿Qué materias te gustan más?",
+        "\tA) Matemáticas y ciencias",
+        "\tB) Lenguaje y literatura",
+        "\tC) Artes y humanidades.",
+        "4. ¿Cómo te gustaría trabajar?",
+        "\tA) Trabajando en equipo",
+        "\tB) Trabajando de manera individual",
+        "\tC) No tengo preferencia.",
+        "5. ¿Qué ambiente de trabajo prefieres?",
+        "\tA) Ambiente de oficina",
+        "\tB) Ambiente al aire libre",
+        "\tC) No tengo preferencia.",
+        "6. ¿Qué carrera te llama más la atención?",
+        "\tA) Ciencias y tecnología",
+        "\tB) Ciencias sociales y humanidades",
+        "\C) Ciencias de la salud",
+        "7. ¿Qué habilidades manuales tienes?",
+        "\tA) Habilidad para construir y reparar cosas",
+        "\tB) Habilidad para cocinar y preparar alimentos",
+        "\tC) No tengo habilidades manuales",
+        "8. ¿Cómo te gustaría ayudar a la sociedad?",
+        "\tA) Ayudando a solucionar problemas sociales",
+        "\tB) Contribuyendo al desarrollo de la tecnología",
+        "\tC) A través de la educación y la enseñanza",
+        "9. ¿Qué te gustaría lograr en tu carrera profesional?",
+        "\tA) Un buen salario y estabilidad laboral",
+        "\tB) Contribuir a la sociedad y hacer una diferencia",
+        "\tC) Desarrollar habilidades y talentos propios",
+        "5. ¿Qué tan importante es para ti el equilibrio entre el trabajo y la vida personal?",
+        "\tA) Muy importante",
+        "\tB) Importante",
+        "\tC) No es tan importante",
+    ]
+
+    respuestas = []
+
+    for pregunta in preguntas:
+        print(pregunta)
+        respuestas = input("Ingresa la letra de tu respuesta: ")
+
+        while respuesta.upper() not in['A', 'B', 'C', 'D', 'E', 'F', 'G']:
+            respuesta = input("Respuesta inválida. Ingresa la letra de tu respuesta")
+        respuestas.append(respuesta.upper())
+
+    puntaje = calcular_puntaje(respuestas)
+
+    nombre = input("Ingresa tu nombre completo: ")
+    edad = input("Ingresa tu edad: ")
+    guardar_datos(nombre, edad, respuestas, puntaje)
+
+    print(f"Tu puntaje final es: {puntaje}")
+    if puntaje < 20:
+        print("Te recomendamos considerar carreras relacionadas con las ciencias y tecnología.")
+    elif puntaje < 30:
+        print("Te recomendamos considerar carreras relacionadas con las ciencias sociales y humanidades.")
+    elif puntaje < 40:
+        print("Te recomendamos considerar carreras relacionadas con las ciencias de la salud y biología.")
+    elif puntaje < 50:
+        print("Te recomendamos considerar carreras relacionadas con los negocios y la administración.")
+    elif puntaje < 60:
+        print("Te recomendamos considerar carreras relacionadas con el arte y el diseño.")
+    else:
+        print("Te recomendamos considerar carreras relacionadas con la educación o alguna otra carrera de tu elección.")
+
+    return
+
